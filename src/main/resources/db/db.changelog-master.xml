@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd 
+   		http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+
+    <!-- Create the customer table -->
+    <changeSet id="createCustomerTable" author="Sachin.Bansode">
+        <createTable tableName="customer">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar(45)"/>
+            <column name="last_name" type="varchar(45)"/>
+            <column name="email" type="varchar(45)"/>
+        </createTable>
+    </changeSet>
+
+    <!-- Insert data into the customer table -->
+    <changeSet id="insertCustomerData" author="Sachin.Bansode">
+        <insert tableName="customer">
+            <column name="id" value="1"/>
+            <column name="first_name" value="David"/>
+            <column name="last_name" value="Adams"/>
+            <column name="email" value="david@luv2code.com"/>
+        </insert>
+        <insert tableName="customer">
+            <column name="id" value="2"/>
+            <column name="first_name" value="John"/>
+            <column name="last_name" value="Doe"/>
+            <column name="email" value="john@luv2code.com"/>
+        </insert>
+        <insert tableName="customer">
+            <column name="id" value="3"/>
+            <column name="first_name" value="Ajay"/>
+            <column name="last_name" value="Rao"/>
+            <column name="email" value="ajay@luv2code.com"/>
+        </insert>
+        <insert tableName="customer">
+            <column name="id" value="4"/>
+            <column name="first_name" value="Mary"/>
+            <column name="last_name" value="Public"/>
+            <column name="email" value="mary@luv2code.com"/>
+        </insert>
+        <insert tableName="customer">
+            <column name="id" value="5"/>
+            <column name="first_name" value="Maxwell"/>
+            <column name="last_name" value="Dixon"/>
+            <column name="email" value="max@luv2code.com"/>
+        </insert>
+    </changeSet>
+    
+    
+    <!-- Create the user table -->
+    <changeSet id="createUserTable" author="sachin.bansode">
+        <createTable tableName="user">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="username" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="CHAR(80)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- Insert data into the user table -->
+    <changeSet id="insertUserData" author="yourname">
+        <insert tableName="user">
+            <column name="id" value="1"/>
+            <column name="username" value="john"/>
+            <column name="password" value="$2a$04$eFytJDGtjbThXa80FyOOBuFdK2IwjyWefYkMpiBEFlpBwDH.5PM0K"/>
+            <column name="first_name" value="John"/>
+            <column name="last_name" value="Doe"/>
+            <column name="email" value="john@luv2code.com"/>
+        </insert>
+        <insert tableName="user">
+            <column name="id" value="2"/>
+            <column name="username" value="mary"/>
+            <column name="password" value="$2a$04$eFytJDGtjbThXa80FyOOBuFdK2IwjyWefYkMpiBEFlpBwDH.5PM0K"/>
+            <column name="first_name" value="Mary"/>
+            <column name="last_name" value="Public"/>
+            <column name="email" value="mary@luv2code.com"/>
+        </insert>
+        <insert tableName="user">
+            <column name="id" value="3"/>
+            <column name="username" value="susan"/>
+            <column name="password" value="$2a$04$eFytJDGtjbThXa80FyOOBuFdK2IwjyWefYkMpiBEFlpBwDH.5PM0K"/>
+            <column name="first_name" value="Susan"/>
+            <column name="last_name" value="Adams"/>
+            <column name="email" value="susan@luv2code.com"/>
+        </insert>
+    </changeSet>
+
+    <!-- Create the role table -->
+    <changeSet id="createRoleTable" author="sachin.bansode">
+        <createTable tableName="role">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+
+    <!-- Insert data into the role table -->
+    <changeSet id="insertRoleData" author="yourname">
+        <insert tableName="role">
+            <column name="id" value="1"/>
+            <column name="name" value="ROLE_EMPLOYEE"/>
+        </insert>
+        <insert tableName="role">
+            <column name="id" value="2"/>
+            <column name="name" value="ROLE_MANAGER"/>
+        </insert>
+        <insert tableName="role">
+            <column name="id" value="3"/>
+            <column name="name" value="ROLE_ADMIN"/>
+        </insert>
+    </changeSet>
+
+    <!-- Create the users_roles table -->
+    <changeSet id="createUsersRolesTable" author="sachin.bansode">
+        <createTable tableName="users_roles">
+            <column name="user_id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_pv_object"/>
+            </column>
+            <column name="role_id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_pv_object"/>
+            </column>
+           
+           <!-- 
+            <addForeignKeyConstraint
+            baseTableName="users_roles"
+            baseColumnNames="user_id"
+            referencedTableName="user"
+            referencedColumnNames="id"
+            constraintName="FK_USER_05"/>
+            
+            <addForeignKeyConstraint
+            baseTableName="users_roles"
+            baseColumnNames="role_id"
+            referencedTableName="role"
+            referencedColumnNames="id"
+            constraintName="FK_ROLE"/>
+           
+            <foreignKeyConstraint baseTableName="user" baseColumnNames="id"
+                                 referencedTableName="users_roles" referencedColumnNames="user_id"
+                                 constraintName="FK_USER_05"/>
+            <foreignKeyConstraint baseTableName="role" baseColumnNames="id"
+                                 referencedTableName="users_roles" referencedColumnNames="role_id"
+                                 constraintName="FK_ROLE"/>
+                                 
+                   -->                
+        </createTable>
+    </changeSet>
+    
+    <!-- Add foreign key constraint to users_roles table -->
+    <changeSet id="addForeignKeyConstraintUser" author="sachin.bansode">
+        <addForeignKeyConstraint
+                baseTableName="users_roles"
+                baseColumnNames="user_id"
+                referencedTableName="user"
+                referencedColumnNames="id"
+                constraintName="FK_USER_05"/>
+    </changeSet>
+    
+    <changeSet id="addForeignKeyConstraintRole" author="sachin.bansode">
+        <addForeignKeyConstraint
+            baseTableName="users_roles"
+            baseColumnNames="role_id"
+            referencedTableName="role"
+            referencedColumnNames="id"
+            constraintName="FK_ROLE"/>
+    </changeSet>
+
+    <!-- Insert data into the users_roles table -->
+    <changeSet id="insertUsersRolesData" author="sachin.bansode">
+        <insert tableName="users_roles">
+            <column name="user_id" value="1"/>
+            <column name="role_id" value="1"/>
+        </insert>
+        <insert tableName="users_roles">
+            <column name="user_id" value="2"/>
+            <column name="role_id" value="1"/>
+        </insert>
+        <insert tableName="users_roles">
+            <column name="user_id" value="2"/>
+            <column name="role_id" value="2"/>
+        </insert>
+        <insert tableName="users_roles">
+            <column name="user_id" value="3"/>
+            <column name="role_id" value="1"/>
+        </insert>
+        <insert tableName="users_roles">
+            <column name="user_id" value="3"/>
+            <column name="role_id" value="3"/>
+        </insert>
+    </changeSet>
+    
+</databaseChangeLog>
