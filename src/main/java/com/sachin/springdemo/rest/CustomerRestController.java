@@ -3,6 +3,7 @@ package com.sachin.springdemo.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,17 +23,20 @@ public class CustomerRestController {
 	@Autowired
 	private CustomerService customerService;
 	
+	@CrossOrigin
 	@GetMapping("/customers")
 	public List<Customer> getCustomers() {
 		return customerService.getCustomers();
 	}
 	
+	@CrossOrigin
 	@GetMapping("/customers/{id}")
 	public Customer getCustomerById(@PathVariable("id") int theId) {
 		
 		return customerService.getCustomer(theId);
 	}
 	
+	@CrossOrigin
 	@PostMapping("/customers")
 	public Customer saveCustomer(@RequestBody Customer theCustomer) {
 		
@@ -43,6 +47,7 @@ public class CustomerRestController {
 		return theCustomer;
 	}
 	
+	@CrossOrigin
 	@PutMapping("/customers")
 	public Customer updateCustomer(@RequestBody Customer theCustomer) {
 		
@@ -51,6 +56,7 @@ public class CustomerRestController {
 		return theCustomer;
 	}
 	
+	@CrossOrigin
 	@DeleteMapping("/customers/{id}")
 	public String deleteCustomer(@PathVariable("id") int theId) {
 		
