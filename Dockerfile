@@ -5,8 +5,8 @@ FROM openjdk:8-jre-slim
 #WORKDIR /app
 
 # Copy SSL certificates
-COPY /etc/letsencrypt/live/intrabtc.in/fullchain.pem /app/fullchain.pem
-COPY /etc/letsencrypt/live/intrabtc.in/privkey.pem /app/privkey.pem
+COPY ssl-certificates/fullchain.pem /app/fullchain.pem
+COPY ssl-certificates/privkey.pem /app/privkey.pem
 
 # Copy the JAR file into the container at /app
 COPY target/br-spring-boot-crm-with-login-new-0.0.1-SNAPSHOT.jar /app/app.jar
